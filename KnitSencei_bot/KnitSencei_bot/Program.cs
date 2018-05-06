@@ -24,7 +24,11 @@ namespace KnitSencei_bot
         static DataOfIdea idea = new DataOfIdea();
         static Keyboard keyboard = new Keyboard();
         static List<DataOfIdea> bla = idea.ReadFile("ideas.csv");
+<<<<<<< HEAD
         //static List<CalcData> cd = 
+=======
+        static List<DataOfIdea> data = new List<DataOfIdea>();
+>>>>>>> 3a537a0381c3125f90599364d615d34c9320fdfc
         static int last_message;
         //static int count = 0;
         static string select_product;
@@ -46,7 +50,6 @@ namespace KnitSencei_bot
             Console.ReadLine();
             Bot.StopReceiving();
         }
-
 
         private static async void Bot_OnCallbackQueryReceived(object sender, CallbackQueryEventArgs e)
         {
@@ -88,6 +91,7 @@ namespace KnitSencei_bot
             }
             
             blaCount = bla.Count()-1;
+<<<<<<< HEAD
             
 
             for (int i = 0; i <= product.Count() - 1; i++)
@@ -110,11 +114,47 @@ namespace KnitSencei_bot
                         count_idea++;
                     }
       
+=======
+            for (int i = 0; i <= product.Count() - 1; i++)
+            {
+                if ((last_message + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() == product[i].product.ToLower()))
+                { select_product = product[i].product; }
+            }
+        
+            if ((blaCount != 0) & (count_idea == 0))
+            {
+                for (int i = 0; i <= blaCount; i++)
+                {
+                    if (select_product == bla[i].Product.ToLower())
+                    {
+                        DataOfIdea tmp = new DataOfIdea();
+                        tmp.ID = bla[i].ID;
+                        tmp.Name = bla[i].Name;
+                        tmp.Product = bla[i].Product;
+                        tmp.Photo = bla[i].Photo;
+                        tmp.Description = bla[i].Description;
+                        data.Add(tmp);
+                    }
+>>>>>>> 3a537a0381c3125f90599364d615d34c9320fdfc
                 }
 
+<<<<<<< HEAD
          
             //if ((last_message + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() != product[count].product.ToLower()))
             //    Bot.SendTextMessageAsync(e.Message.From.Id, "Otvali Vasya").Wait();
+=======
+            if (count_idea == 5)
+            { Bot.SendTextMessageAsync(e.Message.Chat.Id, "К сожалению, в данной категории больше нет идей! Для того, чтобы найти что-то другое нужно выбрать /ideas").Wait(); select_product = ""; data.Clear(); count_idea = 0; }
+            else if (data.Count() != 0)
+            {
+                Bot.SendTextMessageAsync(e.Message.Chat.Id, data[count_idea].Name + "\n" + data[count_idea].Description).Wait();
+                var FileUrl = string.Format(@"images//{0}", data[count_idea].Photo);
+                var stream = new FileStream(FileUrl, FileMode.Open);
+                var fileToSend = new FileToSend(data[count_idea].Photo, stream);
+                await Bot.SendPhotoAsync(e.Message.Chat.Id, fileToSend);
+                count_idea++;
+            }
+>>>>>>> 3a537a0381c3125f90599364d615d34c9320fdfc
         }
 
 
