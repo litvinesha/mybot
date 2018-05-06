@@ -22,11 +22,14 @@ namespace KnitSencei_bot
         static FillIProduct fill_product = new FillIProduct();
         static List<DataOfProduct> product = new List<DataOfProduct>();
         static DataOfIdea idea = new DataOfIdea();
+        static CalcData cd = new CalcData();
         static Keyboard keyboard = new Keyboard();
         static List<DataOfIdea> bla = idea.ReadFile("ideas.csv");
-        //static List<CalcData> cd = 
         static List<DataOfIdea> data = new List<DataOfIdea>();
+        static List<CalcData> bla2 = cd.ReadFile("data.csv");
+        static List<CalcData> datas = new List<CalcData>();
         static int last_message;
+        static int last_message_data;
         //static int count = 0;
         static string select_product;
         static int blaCount = 0;
@@ -55,12 +58,12 @@ namespace KnitSencei_bot
             string name = $"{e.CallbackQuery.From.FirstName}{e.CallbackQuery.From.LastName}";
             Console.WriteLine($"{name} нажал(а) кнопку {buttonText}");
 
-            if (buttonText == "Указать данные")
-                await Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Укажи вид изделия, размер и данные о пряже");
-            else if (buttonText == "Произвести расчет")
-            {
-                await Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Результат расчета - ");
-            }
+            //if (buttonText == "Указать данные")
+            //    await Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Укажи вид изделия, размер и данные о пряже");
+            //else if (buttonText == "Произвести расчет")
+            //{
+            //    await Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Результат расчета - ");
+            //}
             await Bot.AnswerCallbackQueryAsync(e.CallbackQuery.Id, $"Ты нажал(а) кнопку {buttonText}");
         }
 
@@ -77,7 +80,7 @@ namespace KnitSencei_bot
                 case "/inline": keyboard.Inline(Bot, e); break;
                 case "/keyboard": keyboard.Keyboard_k(Bot, e); break;
                 case "/ideas": last_message = keyboard.Idea(Bot, e); break;
-                case "/calculator": keyboard.Calculator(Bot, e); break;
+                case "/calculator": last_message_data = keyboard.Calculator(Bot, e); break;
                 default:
                     //Bot.SendTextMessageAsync(e.Message.From.Id, "Прости, я не понимаю тебя").Wait();
                     //var response = apiAi.TextRequest(message.Text);
@@ -86,10 +89,20 @@ namespace KnitSencei_bot
                     //    answer = "Прости, я не понимаю тебя";
                     //await Bot.SendTextMessageAsync(e.Message.From.Id, answer);
                     break;
-            }    
+            }
+
+         
+            {
+                if ((last_message_data + 1 == e.Message.MessageId))
+                    Console.WriteLine("rtrt");
+
+            }
+            
+
+
+
             blaCount = bla.Count()-1;
 
-            blaCount = bla.Count() - 1;
             for (int i = 0; i <= product.Count() - 1; i++)
             {
                 if ((last_message + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() == product[i].product.ToLower()))

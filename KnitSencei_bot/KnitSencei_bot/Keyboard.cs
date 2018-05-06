@@ -67,20 +67,10 @@ namespace KnitSencei_bot
             return lastmes;
         }
 
-        public async void Calculator(TelegramBotClient Bot, MessageEventArgs e)
+        public int Calculator(TelegramBotClient Bot, MessageEventArgs e)
         {
-            var inlineKeyboard4 = new InlineKeyboardMarkup(new[]
-                    {
-                        new []
-                        {
-                            InlineKeyboardButton.WithCallbackData("Указать данные")
-                        },
-                        new []
-                        {
-                            InlineKeyboardButton.WithCallbackData("Произвести расчет")
-                        }
-                    });
-            await Bot.SendTextMessageAsync(e.Message.From.Id, "Выбери, что ты хочешь сделать", replyMarkup: inlineKeyboard4);
+            int lastmesdata = Bot.SendTextMessageAsync(e.Message.From.Id, "Укажи вид изделия, которое ты хочешь связать").Result.MessageId;
+            return lastmesdata;
         }
 
         public async void Send_Ideas(TelegramBotClient Bot, MessageEventArgs e)

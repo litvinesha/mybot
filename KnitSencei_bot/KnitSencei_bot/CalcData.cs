@@ -18,9 +18,9 @@ namespace KnitSencei_bot
         public string KOyarn { get; set; }
         public string Yarn { get; set; }
 
-        public void PieceData(string line)
+        public void PieceData(string lin)
         {
-            string[] parts = line.Split(';'); 
+            string[] parts = lin.Split(';'); 
             KOmodel = parts[0];
             Model = parts[1];
             KOsize = parts[2];
@@ -31,15 +31,16 @@ namespace KnitSencei_bot
 
         public List<CalcData> ReadFile(string filename)
         {
+            
             List<CalcData> result = new List<CalcData>();
             using (StreamReader sdata = new StreamReader(filename))
             {
                 string lin;
                 while ((lin = sdata.ReadLine()) != null)
                 {
-                    CalcData calc = new CalcData();
-                    calc.PieceData(lin);
-                    result.Add(calc);
+                    CalcData calcul = new CalcData();
+                    calcul.PieceData(lin);
+                    result.Add(calcul);
                 }
             }
             return result;
