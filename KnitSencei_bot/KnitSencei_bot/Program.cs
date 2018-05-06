@@ -125,7 +125,7 @@ namespace KnitSencei_bot
                             of_data2.Clear();
                             last_message_data = 0;
                             dataCount = 0;
-                            Bot.SendTextMessageAsync(e.Message.From.Id, "Укажи, сколько метром в 100г пряжи, которая тебя интересует( 40-60 / 60-90 / 90-120 / 120-180 / 180-200 / 200-250 / 250-300 / 300-350 )").Wait();
+                            Bot.SendTextMessageAsync(e.Message.From.Id, "Укажи, сколько метроd в 100г пряжи, которая тебя интересует( 40-60 / 60-90 / 90-120 / 120-180 / 180-200 / 200-250 / 250-300 / 300-350 )").Wait();
                             
                         }
 
