@@ -113,10 +113,10 @@ namespace KnitSencei_bot
                     dataCount = 0;
                     Bot.SendTextMessageAsync(e.Message.From.Id, "Укажи размер, который тебя интересует(XXS / XS / S / M / L / XL / XXL / XXXL )").Wait();
 
-                    for (int l = 0; l <= of_data2.Count() - 1; l++)
-                    {
-                        if ((last_message_data + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() == of_data2[l].kind.ToLower()))
-                            select_size = of_data2[l].kind;
+                    //for (int l = 0; l <= of_data2.Count() - 1; l++)
+                    //{
+                        if ((last_message_data + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() == of_data2[i].kind.ToLower()))
+                            select_size = of_data2[i].kind;
 
                         if (select_size == "S")
                         {
@@ -128,9 +128,8 @@ namespace KnitSencei_bot
                             Bot.SendTextMessageAsync(e.Message.From.Id, "Укажи, сколько метроd в 100г пряжи, которая тебя интересует( 40-60 / 60-90 / 90-120 / 120-180 / 180-200 / 200-250 / 250-300 / 300-350 )").Wait();
                             
                         }
-
                         
-                    }
+                    //}
 
                     for (int b = 0; b <= of_data3.Count() - 1; b++)
                     {
