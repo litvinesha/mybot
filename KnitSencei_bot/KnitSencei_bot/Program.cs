@@ -87,27 +87,30 @@ namespace KnitSencei_bot
                     break;
             }
             
-            //select_product = "";
             blaCount = bla.Count()-1;
+            
 
             for (int i = 0; i <= product.Count() - 1; i++)
             {
                 if ((last_message + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() == product[i].product.ToLower()))
                     select_product = product[i].product;
             }
-            if (blaCount != 0)
-            {
-                if (select_product == bla[count_idea].Product.ToLower())
+
+                if (blaCount != 0)
                 {
-                    
-                    Bot.SendTextMessageAsync(e.Message.Chat.Id, bla[count_idea].Name + "\n" + bla[0].Description).Wait();
-                    var FileUrl = string.Format(@"images//{0}", bla[count_idea].Photo);
-                    var stream = new FileStream(FileUrl, FileMode.Open);
-                    var fileToSend = new FileToSend(bla[count_idea].Photo, stream);
-                    await Bot.SendPhotoAsync(e.Message.Chat.Id, fileToSend);
-                    count_idea++;
+
+                if (select_product == bla[count_idea].Product.ToLower())
+                    {
+                        Bot.SendTextMessageAsync(e.Message.Chat.Id, bla[count_idea].Name + "\n" + bla[0].Description).Wait();
+                        var FileUrl = string.Format(@"images//{0}", bla[count_idea].Photo);
+                        var stream = new FileStream(FileUrl, FileMode.Open);
+                        var fileToSend = new FileToSend(bla[count_idea].Photo, stream);
+                        await Bot.SendPhotoAsync(e.Message.Chat.Id, fileToSend);
+                        count_idea++;
+                    }
+      
                 }
-            }
+            
 
             //if ((last_message + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() != product[count].product.ToLower()))
             //    Bot.SendTextMessageAsync(e.Message.From.Id, "Otvali Vasya").Wait();
