@@ -65,13 +65,6 @@ namespace KnitSencei_bot
             string buttonText = e.CallbackQuery.Data;
             string name = $"{e.CallbackQuery.From.FirstName}{e.CallbackQuery.From.LastName}";
             Console.WriteLine($"{name} нажал(а) кнопку {buttonText}");
-
-            //if (buttonText == "Указать данные")
-            //    await Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Укажи вид изделия, размер и данные о пряже");
-            //else if (buttonText == "Произвести расчет")
-            //{
-            //    await Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Результат расчета - ");
-            //}
             await Bot.AnswerCallbackQueryAsync(e.CallbackQuery.Id, $"Ты нажал(а) кнопку {buttonText}");
         }
 
@@ -196,9 +189,6 @@ namespace KnitSencei_bot
                         }
                     }
 
-
-                    //if ((last_message + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() != product[count].product.ToLower()))
-                    //    Bot.SendTextMessageAsync(e.Message.From.Id, "Otvali Vasya").Wait();
                     if (count_idea == 5)
                     { Bot.SendTextMessageAsync(e.Message.Chat.Id, "К сожалению, в данной категории больше нет идей! Для того, чтобы найти что-то другое нужно выбрать /ideas").Wait(); select_product = ""; data.Clear(); count_idea = 0; }
                     else if (data.Count() != 0)

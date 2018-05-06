@@ -76,14 +76,6 @@ namespace KnitSencei_bot
            
         }
 
-        //public async void Send_Ideas(TelegramBotClient Bot, MessageEventArgs e)
-        //{
-        //    var inlineKeyboard2 = new InlineKeyboardMarkup
-        //          (new[] {
-        //                    InlineKeyboardButton.WithCallbackData("Еще"),
-        //                    InlineKeyboardButton.WithCallbackData("Хватит")
-        //                 });
-        //    await Bot.SendTextMessageAsync(e.Message.From.Id, "Хочешь еще идей!?", replyMarkup: inlineKeyboard2);
-        //}
+        
     }
 }
