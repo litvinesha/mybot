@@ -131,7 +131,7 @@ namespace KnitSencei_bot
 
             if (msg == 3)
             {
-                    msg_yarn = Bot.SendTextMessageAsync(e.Message.Chat.Id, "Укажите Толщину нити ").Result.MessageId;
+                    msg_yarn = Bot.SendTextMessageAsync(e.Message.Chat.Id, "Укажи метраж нити (40-60 / 60-90 / 90-120 / 120-180 / 180-200 / 200-250 / 250-300 / 300-350 )").Result.MessageId;
                     msg = 0;
             }
             else if (msg == 0)

@@ -16,7 +16,9 @@ namespace KnitSencei_bot
         public async void Start(TelegramBotClient Bot, MessageEventArgs e)
         {
             string text =
- @"Список команд :
+ @" Привет! Я- бот-помощник в твоих вязальных начинаниях! Ты всегда можешь обратиться ко мне за порцией идей, мотивации или просто поговорить! 
+А еще я могу помочь тебе расчитать количество пряжи для твоих проектов!
+Список команд, которые доступны мне :
 /start - запуск бота,
 /keyboard - вывод клавиатуры с командами,
 /calculator - вызвать калькулятор количества пряжи,
@@ -39,7 +41,7 @@ namespace KnitSencei_bot
                             InlineKeyboardButton.WithUrl("Google+", "https://plus.google.com/109645919916102660305"),
                         }
                     });
-            await Bot.SendTextMessageAsync(e.Message.From.Id, "Выбери пункт меню", replyMarkup: inlineKeyboard);
+            await Bot.SendTextMessageAsync(e.Message.From.Id, "Выбери, как именно ты хочешь связаться с моим разработчиком.", replyMarkup: inlineKeyboard);
         }
 
         public async void Keyboard_k(TelegramBotClient Bot, MessageEventArgs e)
@@ -69,7 +71,7 @@ namespace KnitSencei_bot
 
         public int Calculator(TelegramBotClient Bot, MessageEventArgs e)
         {
-            int lastmesdata = Bot.SendTextMessageAsync(e.Message.From.Id, "Укажи вид изделия, которое ты хочешь связать").Result.MessageId;
+            int lastmesdata = Bot.SendTextMessageAsync(e.Message.From.Id, "Укажи вид изделия, которое ты хочешь связать.").Result.MessageId;
             return lastmesdata;
            
         }
