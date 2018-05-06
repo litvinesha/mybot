@@ -90,7 +90,7 @@ namespace KnitSencei_bot
                 case "/ideas": last_message = keyboard.Idea(Bot, e); break;
                 case "/calculator": last_message_data = keyboard.Calculator(Bot, e); break;
                 default:
-                    //Bot.SendTextMessageAsync(e.Message.From.Id, "Прости, я не понимаю тебя").Wait();
+                    ////Bot.SendTextMessageAsync(e.Message.From.Id, "Прости, я не понимаю тебя").Wait();
                     //var response = apiAi.TextRequest(message.Text);
                     //string answer = response.Result.Fulfillment.Speech;
                     //if (answer == "")
