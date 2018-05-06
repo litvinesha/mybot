@@ -22,6 +22,8 @@ namespace KnitSencei_bot
         static FillIProduct fill_product = new FillIProduct();
         static FillData fill_data = new FillData();
         static List<DataOfdata> of_data = new List<DataOfdata>();
+        static List<DataOfdata> of_data2 = new List<DataOfdata>();
+        static List<DataOfdata> of_data3 = new List<DataOfdata>();
         static List<DataOfProduct> product = new List<DataOfProduct>();
         static DataOfIdea idea = new DataOfIdea();
         static CalcData cd = new CalcData();
@@ -35,8 +37,8 @@ namespace KnitSencei_bot
         //static int count = 0;
         static string select_product;
         static string select_model;
-        //static string select_size;
-        //static string select_yarn;
+        static string select_size;
+        static string select_yarn;
         static int blaCount = 0;
         static int dataCount = 0;
         static int count_idea = 0;
@@ -54,8 +56,8 @@ namespace KnitSencei_bot
             Bot.StartReceiving();
             fill_product.Fill_product(product); //заполнение листа информацией из тхт идея
             fill_data.Fill_Model(of_data); //заполнение листа информацией из тхт модел
-            fill_data.Fill_Size(of_data); //заполнение листа информацией из тхт сайз
-            fill_data.Fill_Yarn(of_data); //заполнение листа информацией из тхт ярн
+            fill_data.Fill_Size(of_data2); //заполнение листа информацией из тхт сайз
+            fill_data.Fill_Yarn(of_data3); //заполнение листа информацией из тхт ярн
             Console.ReadLine();
             Bot.StopReceiving();
             
@@ -96,39 +98,66 @@ namespace KnitSencei_bot
 
             //калькулятор
             dataCount = of_data.Count() - 1;
-
+            
             for (int i = 0; i <= of_data.Count() - 1; i++)
             {
                 if ((last_message_data + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() == of_data[i].kind.ToLower()))
                     select_model = of_data[i].kind;
-                
+
                 if (select_model == "Шапка")
                 {
-                    
                     select_model = "444";
                     Console.WriteLine(select_model);
-                    ;
-                }
+                    of_data.Clear();
+                    last_message_data = 0;
+                    dataCount = 0;
+                    Bot.SendTextMessageAsync(e.Message.From.Id, "Укажи размер, который тебя интересует(XXS / XS / S / M / L / XL / XXL / XXXL )").Wait();
 
+                    for (int l = 0; l <= of_data2.Count() - 1; l++)
+                    {
+                        if ((last_message_data + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() == of_data2[l].kind.ToLower()))
+                            select_size = of_data2[l].kind;
 
+                        if (select_size == "S")
+                        {
+                            select_size = "555";
+                            Console.WriteLine(select_size);
+                            of_data2.Clear();
+                            last_message_data = 0;
+                            dataCount = 0;
+                            Bot.SendTextMessageAsync(e.Message.From.Id, "Укажи, сколько метром в 100г пряжи, которая тебя интересует( 40-60 / 60-90 / 90-120 / 120-180 / 180-200 / 200-250 / 250-300 / 300-350 )").Wait();
+                            
+                        }
 
+                        
+                    }
 
+                    for (int b = 0; b <= of_data3.Count() - 1; b++)
+                    {
+                        if ((last_message_data + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() == of_data3[b].kind.ToLower()))
+                            select_yarn = of_data3[b].kind;
 
-                 if ((last_message_data + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() != of_data[i].kind.ToLower()))
-                {
-                    
-                    Bot.SendTextMessageAsync(e.Message.Chat.Id, "Я не понимаю тебя. Подумай еще и нажми /calculator").Wait();
-                    break;
-                }
+                        if (select_yarn == "40-60")
+                        {
+                            select_yarn = "666";
+                            Console.WriteLine(select_yarn);
+                            of_data3.Clear();
+                            dataCount = 0;
+                        }
+                      
+                    }
+
+             }
+         
+                // if ((last_message_data + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() != of_data[i].kind.ToLower()))
+                //{
+                //    Bot.SendTextMessageAsync(e.Message.Chat.Id, "Я не понимаю тебя. Подумай еще и нажми /calculator").Wait();
+                //    break;
+                //}
 
 
 
             }
-
-
-
-
-
 
 
             // вывод идей по категориям
