@@ -20,6 +20,8 @@ namespace KnitSencei_bot
         static TelegramBotClient Bot;
         static ApiAi apiAi;
         static FillIProduct fill_product = new FillIProduct();
+        static FillData fill_data = new FillData();
+        static List<DataOfdata> of_data = new List<DataOfdata>();
         static List<DataOfProduct> product = new List<DataOfProduct>();
         static DataOfIdea idea = new DataOfIdea();
         static CalcData cd = new CalcData();
@@ -32,7 +34,11 @@ namespace KnitSencei_bot
         static int last_message_data;
         //static int count = 0;
         static string select_product;
+        static string select_model;
+        //static string select_size;
+        //static string select_yarn;
         static int blaCount = 0;
+        static int dataCount = 0;
         static int count_idea = 0;
 
         static void Main(string[] args)
@@ -46,9 +52,13 @@ namespace KnitSencei_bot
             Bot.OnCallbackQuery += Bot_OnCallbackQueryReceived;
 
             Bot.StartReceiving();
-            fill_product.Fill_product(product); //заполнение листа информацией из тхт
+            fill_product.Fill_product(product); //заполнение листа информацией из тхт идея
+            fill_data.Fill_Model(of_data); //заполнение листа информацией из тхт модел
+            fill_data.Fill_Size(of_data); //заполнение листа информацией из тхт сайз
+            fill_data.Fill_Yarn(of_data); //заполнение листа информацией из тхт ярн
             Console.ReadLine();
             Bot.StopReceiving();
+            
         }
 
 
@@ -57,13 +67,6 @@ namespace KnitSencei_bot
             string buttonText = e.CallbackQuery.Data;
             string name = $"{e.CallbackQuery.From.FirstName}{e.CallbackQuery.From.LastName}";
             Console.WriteLine($"{name} нажал(а) кнопку {buttonText}");
-
-            //if (buttonText == "Указать данные")
-            //    await Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Укажи вид изделия, размер и данные о пряже");
-            //else if (buttonText == "Произвести расчет")
-            //{
-            //    await Bot.SendTextMessageAsync(e.CallbackQuery.From.Id, "Результат расчета - ");
-            //}
             await Bot.AnswerCallbackQueryAsync(e.CallbackQuery.Id, $"Ты нажал(а) кнопку {buttonText}");
         }
 
@@ -91,18 +94,45 @@ namespace KnitSencei_bot
                     break;
             }
 
-         
+            //калькулятор
+            dataCount = of_data.Count() - 1;
+
+            for (int i = 0; i <= of_data.Count() - 1; i++)
             {
-                if ((last_message_data + 1 == e.Message.MessageId))
-                    Console.WriteLine("rtrt");
+                if ((last_message_data + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() == of_data[i].kind.ToLower()))
+                    select_model = of_data[i].kind;
+                
+                if (select_model == "Шапка")
+                {
+                    
+                    select_model = "444";
+                    Console.WriteLine(select_model);
+                    ;
+                }
+
+
+
+
+
+                 if ((last_message_data + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() != of_data[i].kind.ToLower()))
+                {
+                    
+                    Bot.SendTextMessageAsync(e.Message.Chat.Id, "Я не понимаю тебя. Подумай еще и нажми /calculator").Wait();
+                    break;
+                }
+
+
 
             }
-            
 
 
 
+
+
+
+
+            // вывод идей по категориям
             blaCount = bla.Count()-1;
-
             for (int i = 0; i <= product.Count() - 1; i++)
             {
                 if ((last_message + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() == product[i].product.ToLower()))

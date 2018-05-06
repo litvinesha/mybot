@@ -17,6 +17,7 @@ namespace KnitSencei_bot
 
         public string KOyarn { get; set; }
         public string Yarn { get; set; }
+        public string Nyarn { get; set; }
 
         public void PieceData(string lin)
         {
@@ -27,6 +28,7 @@ namespace KnitSencei_bot
             Size = parts[3];
             KOyarn = parts[4];
             Yarn = parts[5];
+            Nyarn = parts[6];
         }
 
         public List<CalcData> ReadFile(string filename)
@@ -44,6 +46,8 @@ namespace KnitSencei_bot
                 }
             }
             return result;
+
+
         }
     }
 }

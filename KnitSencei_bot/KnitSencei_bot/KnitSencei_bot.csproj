@@ -57,7 +57,9 @@
   <ItemGroup>
     <Compile Include="CalcData.cs" />
     <Compile Include="DataOfIdea.cs" />
+    <Compile Include="DataOfdata.cs" />
     <Compile Include="DataOfProduct.cs" />
+    <Compile Include="FillData.cs" />
     <Compile Include="FillIProduct.cs" />
     <Compile Include="Keyboard.cs" />
     <Compile Include="Program.cs" />

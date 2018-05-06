@@ -18,10 +18,10 @@ namespace KnitSencei_bot
             string text =
  @"Список команд :
 /start - запуск бота,
-/inline - связь с разработчиком,
 /keyboard - вывод клавиатуры с командами,
 /calculator - вызвать калькулятор количества пряжи,
-/ideas- показать идеи для вязания";
+/ideas- показать идеи для вязания,
+/inline - связь с разработчиком";
             await Bot.SendTextMessageAsync(e.Message.From.Id, text);
         }
 
@@ -48,17 +48,17 @@ namespace KnitSencei_bot
                     {
                         new []
                         {
-                            new KeyboardButton("Ты кто?"),
-                            new KeyboardButton("Привет!")
+                            new KeyboardButton("/calculator"),
+                            
                         },
                         new []
                         {
-                            new KeyboardButton("Помоги мне!"),
-                            new KeyboardButton("Как дела?")
+                            new KeyboardButton("/ideas"),
+                            new KeyboardButton("/inline")
                         }
                     });
             replyKeyboard.ResizeKeyboard = true;
-            await Bot.SendTextMessageAsync(e.Message.Chat.Id, "А вот и Я!", replyMarkup: replyKeyboard);
+            await Bot.SendTextMessageAsync(e.Message.Chat.Id, "Теперь у тебя под рукой все команды, доступные мне!", replyMarkup: replyKeyboard);
         }
 
         public int Idea(TelegramBotClient Bot, MessageEventArgs e)
@@ -71,16 +71,17 @@ namespace KnitSencei_bot
         {
             int lastmesdata = Bot.SendTextMessageAsync(e.Message.From.Id, "Укажи вид изделия, которое ты хочешь связать").Result.MessageId;
             return lastmesdata;
+           
         }
 
-        public async void Send_Ideas(TelegramBotClient Bot, MessageEventArgs e)
-        {
-            var inlineKeyboard2 = new InlineKeyboardMarkup
-                  (new[] {
-                            InlineKeyboardButton.WithCallbackData("Еще"),
-                            InlineKeyboardButton.WithCallbackData("Хватит")
-                         });
-            await Bot.SendTextMessageAsync(e.Message.From.Id, "Хочешь еще идей!?", replyMarkup: inlineKeyboard2);
-        }
+        //public async void Send_Ideas(TelegramBotClient Bot, MessageEventArgs e)
+        //{
+        //    var inlineKeyboard2 = new InlineKeyboardMarkup
+        //          (new[] {
+        //                    InlineKeyboardButton.WithCallbackData("Еще"),
+        //                    InlineKeyboardButton.WithCallbackData("Хватит")
+        //                 });
+        //    await Bot.SendTextMessageAsync(e.Message.From.Id, "Хочешь еще идей!?", replyMarkup: inlineKeyboard2);
+        //}
     }
 }
