@@ -24,6 +24,7 @@ namespace KnitSencei_bot
         static DataOfIdea idea = new DataOfIdea();
         static Keyboard keyboard = new Keyboard();
         static List<DataOfIdea> bla = idea.ReadFile("ideas.csv");
+        //static List<CalcData> cd = 
         static int last_message;
         //static int count = 0;
         static string select_product;
@@ -74,7 +75,6 @@ namespace KnitSencei_bot
                 case "/start": keyboard.Start(Bot, e); break;
                 case "/inline": keyboard.Inline(Bot, e); break;
                 case "/keyboard": keyboard.Keyboard_k(Bot, e); break;
-                case "/help": keyboard.Help(Bot, e); break;
                 case "/ideas": last_message = keyboard.Idea(Bot, e); break;
                 case "/calculator": keyboard.Calculator(Bot, e); break;
                 default:
@@ -94,9 +94,10 @@ namespace KnitSencei_bot
             {
                 if ((last_message + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() == product[i].product.ToLower()))
                     select_product = product[i].product;
+            
             }
-
-                if (blaCount != 0)
+        
+            if (blaCount != 0)
                 {
 
                 if (select_product == bla[count_idea].Product.ToLower())
@@ -110,10 +111,12 @@ namespace KnitSencei_bot
                     }
       
                 }
-            
 
+         
             //if ((last_message + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() != product[count].product.ToLower()))
             //    Bot.SendTextMessageAsync(e.Message.From.Id, "Otvali Vasya").Wait();
         }
+
+
     }
 }

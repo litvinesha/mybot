@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalcData.cs" />
     <Compile Include="DataOfIdea.cs" />
     <Compile Include="DataOfProduct.cs" />
     <Compile Include="FillIProduct.cs" />
