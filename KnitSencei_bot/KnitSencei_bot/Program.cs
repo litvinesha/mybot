@@ -48,6 +48,7 @@ namespace KnitSencei_bot
             Bot.StopReceiving();
         }
 
+
         private static async void Bot_OnCallbackQueryReceived(object sender, CallbackQueryEventArgs e)
         {
             string buttonText = e.CallbackQuery.Data;
@@ -85,7 +86,8 @@ namespace KnitSencei_bot
                     //    answer = "Прости, я не понимаю тебя";
                     //await Bot.SendTextMessageAsync(e.Message.From.Id, answer);
                     break;
-            }
+            }    
+            blaCount = bla.Count()-1;
 
             blaCount = bla.Count() - 1;
             for (int i = 0; i <= product.Count() - 1; i++)
@@ -145,7 +147,11 @@ namespace KnitSencei_bot
                     }
                 }
             }
+      }
+
+         
+            //if ((last_message + 1 == e.Message.MessageId) && (e.Message.Text.ToLower() != product[count].product.ToLower()))
+            //    Bot.SendTextMessageAsync(e.Message.From.Id, "Otvali Vasya").Wait();
         }
     }
-}
 
